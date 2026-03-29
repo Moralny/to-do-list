@@ -1,7 +1,9 @@
 import { useState } from "react"
+import useLocalStorage from "../hooks/useLocalStorage";
 
 function TodoApp() {
-    const [tasks, setTasks] = useState([]); // Lista zadań
+    // const [tasks, setTasks] = useState([]); // Lista zadań
+    const [tasks, setTasks] = useLocalStorage("tasks",[])
     const [input, setInput] = useState('');
 
     const addTask = () => {
