@@ -3,3 +3,10 @@ body {
     background-color: aliceblue;
     margin: 0;
 }
+.container {
+    margin: 50px auto;
+    background: white;
+}
+h1 {
+    text-align: center;
+}
