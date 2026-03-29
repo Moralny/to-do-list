@@ -2,15 +2,26 @@ import { useState, useEffect } from "react";
 
 function useLocalStorage(key, initialValue) {
     const [value, setValue] = useState(() => {
-        const saved = localStorage.getItem(key)
-        return saved ? JSON.parse(saved) : initialValue
-    })
+        try {
+            if (typeof window === "undefined") return initialValue;
+
+            const saved = window.localStorage.getItem(key);
+            return saved ? JSON.parse(saved) : initialValue;
+        } catch (e) {
+            console.error("Błąd odczytu localStorage:", e);
+            return initialValue;
+        }
+    });
 
     useEffect(() => {
-        localStorage.setItem(key, JSON.stringify(value));
+        try {
+            window.localStorage.setItem(key, JSON.stringify(value));
+        } catch (e) {
+            console.error("Błąd zapisu localStorage:", e);
+        }
     }, [key, value]);
 
     return [value, setValue];
 }
 
-export default useLocalStorage
+export default useLocalStorage;
