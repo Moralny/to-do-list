@@ -37,7 +37,7 @@ function TodoApp() {
                 {tasks.map((task, index) => ( // to będzie generować dynamicznie listę HTML
                     <li key={index} className={task.done ? "done" : ""}>
                         <span onClick={() => toggleTask(index)}>{task.text}</span>
-                        <button onClick={() => deleteTask(index)}>❌</button>
+                        <button onClick={() => deleteTask(index)}>ⓧ</button>
                     </li>
                 ))}
             </ul>
